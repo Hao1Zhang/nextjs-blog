@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-09 11:22:27
- * @LastEditTime: 2021-07-09 14:39:43
+ * @LastEditTime: 2021-07-09 16:05:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \nextjs-blog\pages\posts\[id].js
@@ -14,17 +14,19 @@ import Head from 'next/head'
 
 export async function getStaticPaths() {
     const paths = getAllPostIds()
+    // console.log(paths)
     return {
         paths,
-        fallback: true
+        fallback: false
     }
 }
 
 export async function getStaticProps({ params }) {
     const postData = await getPostData(params.id)
+    // console.log(postData)
     return {
         props: {
-            postData
+            postData : postData
         }
     }
 }
@@ -33,6 +35,7 @@ export async function getStaticProps({ params }) {
 
 
 export default function Post({ postData }) {
+console.log(postData)
     return (
         <Layout>
             <Head>
